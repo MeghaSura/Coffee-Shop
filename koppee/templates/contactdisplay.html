@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'contpage' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center><h1 class="h2_cls">contact details</h1></center>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+
+            </tr>
+            </thead>
+              {% for j in data %}
+            <tr>
+                <td> {{ j.name }}</td>
+                <td> {{ j.mail }}</td>
+                <td> {{ j.subject }}</td>
+                <td> {{ j.msg }}</td>
+                 <td>
+
+                    <form action="{% url 'deletecontact' dataid=j.id %}">
+                        <button type="submit" class="btn btn-primary">delete</button>
+                    </form>
+
+
+                </td>
+                
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</form>
+
+</body>
+</html>
+{% endblock %}
+

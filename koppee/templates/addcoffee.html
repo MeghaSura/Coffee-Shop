@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+          <form method="post" action="{% url 'coffeesave' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail">coffee name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail" name="bname" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail">Price</label>
+                    <input type="text" class="form-control" id="exapleInputEmai"  name="price" required>
+                  </div>
+                  <div class="form-group">
+                     <label for="exampleInputEmail">About</label>
+                     <input type="text" class="form-control" id="exampleInputEmai"  name="abt">
+                  </div>
+                    <div class="mb-3">
+                       <label class="form-label"> Image</label>
+                        <input type="file" class="form-control" name="image" placeholder="Your Image">
+                    </div>
+                    <div class="form_group form-default">
+                                  <label class="form-label">Category</label>
+                          <select name="cat" class="form-control">
+                              {% for d in dat %}
+                              <option>{{ d.Catname }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+
+
+
+
+
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">add</button>
+                </div>
+                    </div>
+          </form>
+
+</body>
+</html>
+{% endblock %}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+          <form method="post" action="{% url 'catupdate' dataid=dt.id %}" enctype="multipart/form-data">
+
+              {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <!--suppress XmlInvalidId -->
+                      <label for="exampleInputEmal1">Category name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail" name="name" value=" {{ dt.Catname }}">
+                  </div>
+
+
+                    <div class="mb-3">
+        <label class="form-label">Profile Image</label>
+        <input type="file" class="form-control" name="imag" value="{{ dt.Image }}" >
+    </div>
+                    </div>
+
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+          </form>
+
+</body>
+</html>
+{% endblock %}
+

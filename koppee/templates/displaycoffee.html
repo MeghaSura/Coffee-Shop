@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{% url 'coffeedisplay' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center><h1 class="h2_cls">coffee details</h1></center>
+    <div class="card-body table-responsive p-0">
+        <table class="table table-hover text-nowrap">
+            <thead>
+            <tr>
+                <th>Coffee name</th>
+                <th>Price</th>
+                <th>About</th>
+                <th>Image</th>
+                <th>Category</th>
+            </tr>
+            </thead>
+              {% for d in dat %}
+            <tr>
+                <td> {{ d.Coffeename }}</td>
+                <td> {{ d.Price }}</td>
+                <td> {{ d.About }}</td>
+                <td>
+                    <img src="{{ d.Image.url }}" width="40" height="40">
+                </td>
+                <td> {{ d.Category }}</td>
+
+                <td>
+                    <form action="{% url 'coffeeedit' dataid=d.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">edit</button>
+                    </form>
+                </td>
+                <td>
+
+                    <form action="{% url 'coffeedelete' dataid=d.id %}">
+                        <button type="submit" class="btn btn-primary">delete</button>
+                    </form>
+
+
+                </td>
+
+
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+</form>
+
+</body>
+</html>
+{% endblock %}
